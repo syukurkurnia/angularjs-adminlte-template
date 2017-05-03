@@ -1,0 +1,5 @@
+#PR
+1. perbaiki function "init" di "partial/vechile.js"
+   pindahkan pemanggilan service untuk mengisi merk & tipe ke angular service [ga bisa]
+2. perbaiki get function utuk edit data tidak usah di isi satu2 per variable. 
+3. ganti clearForm (di set tiap attibut = "") menjadi delete json

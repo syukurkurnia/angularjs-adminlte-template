@@ -1,0 +1,141 @@
+<div class="col-md-12" ng-controller="VechileCtrl">
+
+  <div class="row" ng-hide="hideAlert">
+      <div class="col-md-4">
+          <div uib-alert type="danger">{{errorMsg}}</div>
+      </div>
+  </div>
+
+  <div class="row">
+
+
+    <div class="col-md-5">
+        <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">Input New Vechile Merk</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start --> 
+        <form class="form-horizontal">
+          <div class="box-body">
+
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Id</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control"  id="id" placeholder="Id" ng-model="data.id" focus-me="{{focusVar}}" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Reg.Plates</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control"  id="name" placeholder="Registration Plates" ng-model="data.registrationPlates" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Merk</label>
+              <div class="col-sm-10">
+                 <select name="merk" id="merk" class="form-control"
+                         ng-options="option.name for option in merk track by option.id"
+                         ng-model="data.merk">
+                 </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Type</label>
+              <div class="col-sm-10">
+                <select name="type" id="type" class="form-control"
+                         ng-options="option.name for option in type track by option.id"
+                         ng-model="data.type">
+                 </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="capacity" class="col-sm-2 control-label">Capacity</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control"  id="capacity" placeholder="Capacity (Numberic)" ng-model="data.capacity">
+              </div>
+            </div>
+
+             <div class="form-group">
+              <label for="capacity" class="col-sm-2 control-label">Released</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control"  id="capacity" placeholder="Released (Year)" ng-model="data.released">
+              </div>
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-success" ng-click="save()" >Save</button>
+            <button type="submit" class="btn btn-default" ng-click="cancel()">Cancel</button>
+          </div>
+
+          <!-- /.box-footer -->
+        </form>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="box box-success">
+        <div class="box-header">
+          <h3 class="box-title">List Of Vechile Merk</h3>
+
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search" ng-model="searchCriteria" >
+
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-default" ng-click="search()" ><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tr>
+              <th>ID</th>
+              <th>Reg.Plates</th>
+              <th>Capacity</th>
+              <th>Merk</th>
+              <th>Type</th>
+              <th>Release</th>
+              <th>&nbsp;</th>
+            </tr>
+            <tr ng-repeat="dat in listData.content">
+              <td>{{dat.id}}</td>
+              <td>{{dat.registrationPlates}}</td>
+              <td>{{dat.merk.name}}</td>
+              <td>{{dat.type.name}}</td>
+              <td>{{dat.capacity}}</td>
+              <td>{{dat.released}}</td>
+              <td class="kursor">
+                
+                <span class="label label-success" ng-click="getData(dat)">Edit</span>
+                <span class="label label-danger"
+                  mwl-confirm
+                  title="Hello"
+                  message="Yakin, {{dat.registrationPlates}} akan di hapus ?"
+                  confirm-text="Ya"
+                  cancel-text="Batal"
+                  placement="{{ placement }}"
+                  on-confirm="delete(dat)"
+                  on-cancel="cancelClicked = true"
+                  confirm-button-type="danger">
+                  hapus
+                </span>
+                
+              </td>
+            </tr>  
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</div>
